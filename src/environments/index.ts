@@ -16,14 +16,14 @@ const {
   POSTGRES_USER,
   POSTGRES_PASSWORD,
   POSTGRES_DB,
-  ACCESS_TOKEN_SECRET,
-  ACCESS_TOKEN_EXPIRES_IN,
-  REFRESH_TOKEN_EXPIRES_IN,
-  BCRYPT_SALT,
   RABBITMQ_QUEUE,
   RABBITMQ_URL,
   RABBITMQ_USERNAME,
   RABBITMQ_PASSWORD,
+  MAILJET_SECRET_KEY,
+  MAILJET_API_KEY,
+  SENDGRID_EMAIL,
+  SENDGRID_API_KEY,
 } = process.env;
 
 if (NODE_ENV && !Object.values(NodeEnv).includes(NODE_ENV as NodeEnv)) {
@@ -39,21 +39,20 @@ if (!POSTGRES_HOST || !POSTGRES_PORT || !POSTGRES_DB) {
 }
 
 if (
-  !ACCESS_TOKEN_SECRET ||
-  !ACCESS_TOKEN_EXPIRES_IN ||
-  !REFRESH_TOKEN_EXPIRES_IN ||
-  !BCRYPT_SALT
-) {
-  throw new Error('Access token config is not define');
-}
-
-if (
   !RABBITMQ_QUEUE ||
   !RABBITMQ_URL ||
   !RABBITMQ_USERNAME ||
   !RABBITMQ_PASSWORD
 ) {
   throw new Error('RabbitMQ config is not define');
+}
+
+if (!MAILJET_API_KEY || !MAILJET_SECRET_KEY) {
+  throw new Error('Mailjet config is not define');
+}
+
+if (!SENDGRID_API_KEY || !SENDGRID_EMAIL) {
+  throw new Error('Send grid config is not define');
 }
 
 if (!VHM_API_KEY) {
@@ -73,12 +72,12 @@ export default {
   POSTGRES_USER,
   POSTGRES_PASSWORD,
   POSTGRES_DB,
-  ACCESS_TOKEN_SECRET,
-  ACCESS_TOKEN_EXPIRES_IN,
-  REFRESH_TOKEN_EXPIRES_IN,
-  BCRYPT_SALT,
   RABBITMQ_QUEUE,
   RABBITMQ_URL,
   RABBITMQ_USERNAME,
   RABBITMQ_PASSWORD,
+  MAILJET_SECRET_KEY,
+  MAILJET_API_KEY,
+  SENDGRID_EMAIL,
+  SENDGRID_API_KEY,
 };

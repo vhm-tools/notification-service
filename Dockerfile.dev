@@ -1,0 +1,11 @@
+FROM node:18-alpine AS development
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN yarn --frozen-lockfile
+
+COPY . .
+
+CMD ["yarn", "start:dev"]
