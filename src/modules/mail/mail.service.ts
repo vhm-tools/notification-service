@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { RmqContext } from '@nestjs/microservices';
+import Handlebars from 'handlebars';
+import { SendMailPayload } from '@infra-common';
 import { SendGridService } from '../sendgrid/sendgrid.service';
 import env from '@environments';
 
@@ -7,13 +9,21 @@ import env from '@environments';
 export class MailService {
   constructor(private sendGridService: SendGridService) {}
 
-  sendMail(payload: any): void {
+  sendMail(payload: SendMailPayload): void {
     const { data } = payload;
-    const mail = {
+    const template = Handlebars.compile(data.html);
+
+    const mailData = {
       ...data,
-      from: env.SENDGRID_EMAIL, // Fill it with your validated email on SendGrid account
+      html: template({
+        fullName: 'Minh Moment',
+        isCandidate: true,
+        verifyUrl:
+          'https://dev.novu-web.heydevs.io/templates/edit/64ed74cf8df76f391ec37d75',
+      }),
+      from: env.SENDGRID_EMAIL,
     };
-    this.sendGridService.send(mail);
+    this.sendGridService.send(mailData);
   }
 
   ack(ctx: RmqContext): void {
