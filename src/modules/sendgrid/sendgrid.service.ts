@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 import * as SendGrid from '@sendgrid/mail';
 import env from '@environments';
-import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
 import { Logger } from 'winston';
 
 @Injectable()
 export class SendGridService {
   constructor(
-    @Inject(WINSTON_MODULE_NEST_PROVIDER)
+    @Inject(WINSTON_MODULE_PROVIDER)
     private readonly logger: Logger,
   ) {
     SendGrid.setApiKey(env.SENDGRID_API_KEY);
