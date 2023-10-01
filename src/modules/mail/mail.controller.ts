@@ -1,4 +1,5 @@
-import { AuthCallGuard, SendMailPayload } from '@infra-common';
+import { AuthCallGuard } from '@infra-common/guards';
+import { SendMailPayload } from '@infra-common/dtos';
 import { Controller, UseGuards } from '@nestjs/common';
 import { EventPattern, Payload, Ctx, RmqContext } from '@nestjs/microservices';
 import { MailService } from './mail.service';
