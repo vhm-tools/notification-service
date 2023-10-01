@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { RmqContext } from '@nestjs/microservices';
 import Handlebars from 'handlebars';
-import { SendMailPayload } from '@infra-common';
+import { SendMailPayload } from '@infra-common/dtos';
 import { SendGridService } from '../sendgrid/sendgrid.service';
 import env from '@environments';
 

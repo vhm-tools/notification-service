@@ -46,13 +46,15 @@
     "class-validator": "^0.14.0",
     "dotenv": "^16.0.3",
     "handlebars": "^4.7.8",
+    "nest-winston": "^1.9.4",
     "pg": "^8.10.0",
     "pluralize": "^8.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "typeorm": "^0.3.14",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "winston": "^3.10.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",

@@ -25,7 +25,7 @@
       "@modules": ["src/modules"],
       "@utils": ["src/utils"],
       "@share-libs": ["libs"],
-      "@infra-common": ["libs/infra-common"],
+      "@infra-common/*": ["libs/infra-common/*"],
       "@infra-modules": ["libs/infra-modules"]
     }
   },

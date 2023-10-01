@@ -1,5 +1,5 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { SnakeCaseNamingStrategy } from '@utils';
+import { SnakeCaseNamingStrategy } from '@infra-common/helpers';
 import env from '@environments';
 
 const {

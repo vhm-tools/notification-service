@@ -1,17 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import * as SendGrid from '@sendgrid/mail';
 import env from '@environments';
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import { Logger } from 'winston';
 
 @Injectable()
 export class SendGridService {
-  constructor() {
+  constructor(
+    @Inject(WINSTON_MODULE_NEST_PROVIDER)
+    private readonly logger: Logger,
+  ) {
     SendGrid.setApiKey(env.SENDGRID_API_KEY);
   }
 
   async send(mail: SendGrid.MailDataRequired) {
     const transport = await SendGrid.send(mail);
     // avoid this on production. use log instead :)
-    // console.log(`E-Mail sent to ${mail.to}`);
+    this.logger.info(`E-Mail sent to ${mail.to}`);
     return transport;
   }
 }
